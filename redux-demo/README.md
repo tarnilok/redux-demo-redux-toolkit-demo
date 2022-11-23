@@ -1,0 +1,60 @@
+- REDUX
+- npm init --yes to create package.json
+- npm instal redux
+- node index to run index.js
+    - store, action, reducer
+    - first principle all states are stored as an single object inside a single store
+    - the only way to change the state is to dispatch an action.
+- create action as an object containing type described as a variable before and other properties that we need. Then create the action creator function that returns the new State
+    - write pure reducers to update the state based on actions.
+    - Actions has type property (string) to describe something that happened.
+    - action is an object with a type property
+    - action creator is a function that returns an object
+    - reducers accepts state and action as an arguments, returns the next state of the application
+    - (prevState, action) => newState
+- then create the reducer function and initalState
+    - REDUX STORE: one store for the entire application
+    - holds app's state
+    - allows access to store via getState()
+    - allows state to be updated via dispatch(action)
+    - registers listeners via subscribe(listener)
+    - handles unregistering of listeners via the function returned by subscribe(listener)
+- create redux variable. then create createStore variable from redux.createStore. then create store variable from createStore with passing reducer function created before to it
+- store.getState() gives us the state object of the application
+- CAKE_RESTOCKED created and quantity is renamed to payload
+- use redux.bindActionCreators (helper function)
+- now ice-cream is started to sell. to do this firstly we will use via current reducer, and then we'will create a new reducer to manage this more easily.
+- we create two reducer and then combine reducers
+------------------------------------
+-the case of nestedState we can use immer library (npm i immer)
+- Middleware 
+    - is the suggested way to extend Redux with custom functionality.
+    - provides a third party extension point between dispatching an action and the moment it reaches the reducer.
+    - is used for logging, crash reporting, performing async tasks etc.
+- Logger for Redux library (npm i redux-logger)
+    - logs all information related to redux in our application 
+    - reduxLogger.createLogger()
+    - const applyMiddleware = redux.applyMiddleware
+    - const store = createStore(rootReducer, applyMiddleware(logger)) 
+    - const unsubscribe = store.subscribe(() => {}), removed  console.log
+- Sync Actions
+    - as soon as an action was dispatched, the state was immediately updated.
+    - if you dispatch the cake ordered action, the numOfCakes was right away decremented by 1.
+- Async Actions
+    - async api calls to fetch data from an end point and use thate data in your application.
+    - assume that our application
+        - fetches a list of users from an API end point and stores it in the redux store.
+        - state {loading: true, data: [list of users], error: 'display error to user'}
+        - actions fetch_users_requested, fetch_users_succeded, fetc_users_failed
+        - reducers has 3 case requested, succeeded, and failed
+    - npm i axios (npm i axios)
+    - Redux-thunk (npm i redux-thunk )
+        - is the standard way to define async action creators in out application
+        - is a middleware we will be applying to our redux store
+        - const thunkMiddleware = require('redux-thunk').default
+        - const applyMiddleware = redux.applyMiddleware
+        - const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+        - thunk middleware brings to the table is the ability for an action creator to return a function instead of an action object
+        - this function doesn't have to be pure. It is allowed to have side effects such as async api calls and this function can also dispatch action like the ones we have seen before. 
+        - using https://jsonplaceholder.typicode.com/users for api request 
+    

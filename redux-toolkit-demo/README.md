@@ -1,0 +1,9 @@
+- REDUX TOOLKIT
+- npm init --yes to create package.json
+- npm i @reduxjs/toolkit
+- slice is a redux toolkit convention and we are not appending it because a slice of cake seems appropriate. the entire application state is split into slices and managed individually
+- const createSlice = require('@reduxjs/toolkit').createSlice
+- createSlice will automatically generate action creators with the same names as the reducer functions we have written. ordered and restocked. we don't have to type it by hand.
+- we don't have to explicitly return new state in toolkit
+- we can directly mutate the state in toolkit
+- instead of createStore we use configureStore
