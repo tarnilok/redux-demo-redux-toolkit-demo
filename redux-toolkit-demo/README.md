@@ -7,3 +7,8 @@
 - we don't have to explicitly return new state in toolkit
 - we can directly mutate the state in toolkit
 - instead of createStore we use configureStore
+------------------------------------
+- Logger for Redux library (npm i redux-logger)
+    - middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+    - we do this because by default the configure store function adds some middleware to the redux store setup automatically.
+    - under the hood ex: => action { type: 'cake/restocked', payload: 3 }, slice name is the first part('cake') and the key of reducer functions are the second part('restocked'). both are separated by a slash

@@ -56,5 +56,5 @@
         - const store = createStore(reducer, applyMiddleware(thunkMiddleware))
         - thunk middleware brings to the table is the ability for an action creator to return a function instead of an action object
         - this function doesn't have to be pure. It is allowed to have side effects such as async api calls and this function can also dispatch action like the ones we have seen before. 
-        - using https://jsonplaceholder.typicode.com/users for api request 
+        - using https://jsonplaceholder.typicode.com/users for api request
     
