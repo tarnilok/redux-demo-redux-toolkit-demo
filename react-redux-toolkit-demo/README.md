@@ -1,0 +1,2 @@
+- REACT REDUX TOOLKIT
+- npm create vite@latest react-redux-toolkit-demo in main folder
