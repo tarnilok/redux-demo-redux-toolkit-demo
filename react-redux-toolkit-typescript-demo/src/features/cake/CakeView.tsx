@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { ordered, restocked } from "./cakeSlice";
 
 export const CakeView = () => {
-  const numberOfCakes = useSelector((state) => state.cake.numberOfCakes);
-  const dispatch = useDispatch();
+  const numberOfCakes = useAppSelector((state) => state.cake.numberOfCakes);
+  const dispatch = useAppDispatch();
   //todo here state refers to the redux state which contains multiple reducers
   return (
     <div>

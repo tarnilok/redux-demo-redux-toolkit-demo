@@ -1,7 +1,18 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
+type User = {
+  id: number;
+  name: string;
+};
+
+type initialStateType = {
+  loading: boolean;
+  users: User[];
+  error: string;
+};
+
+const initialState: initialStateType = {
   loading: false,
   users: [],
   error: "",
@@ -17,22 +28,26 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
 const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     //! action type => 'user/fetchUsers/pending'
     builder.addCase(fetchUsers.pending, (state) => {
       state.loading = true;
     });
     //! action type =>  'user/fetchUsers/fulfilled'
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      state.loading = false;
-      state.users = action.payload;
-      state.error = "";
-    });
+    builder.addCase(
+      fetchUsers.fulfilled,
+      (state, action: PayloadAction<User[]>) => {
+        state.loading = false;
+        state.users = action.payload;
+        state.error = "";
+      }
+    );
     //! action type =>  'user/fetchUsers/rejected'
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.loading = false;
       state.users = [];
-      state.error = action.error.message;
+      state.error = action.error.message ?? "Something went wrong";
     });
   },
 });
