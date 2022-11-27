@@ -51,7 +51,7 @@ function restockIceCream(qty = 1) {
 
 const initialCakeState = {
   numOfCakes: 10,
-};
+}; 
 const initialIceCreamState = {
   numofIceCreams: 20,
 };
